@@ -1,0 +1,13 @@
+{{extend "adminlte/layout/2column_sidebar.html"}}
+
+{{block pagecss}}
+<link rel="stylesheet" type="text/css" href="{{=url_for_static('site/site.css')}}"></link>
+{{end}}
+
+{{block mainmenu}}
+{{<< mainmenu('home')}}
+{{end}}
+
+{{block header_custom_menu}}
+  {{include "adminlte/layout/inc/userinfo.html"}}
+{{end}}
