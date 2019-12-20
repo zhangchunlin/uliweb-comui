@@ -1,0 +1,16 @@
+{{extend "adminlte/layout1.html"}}
+
+{{block mainmenu_config}}
+{{mainmenu_name,mainmenu_active='MAINMENU','adminlte1'}}
+{{end mainmenu_config}}
+
+{{block header_custom_menu}}
+<ul class="nav navbar-nav">
+  <li class="user user-menu">
+    <a href="#">
+      <img src="/static/img/user2-160x160.jpg" class="user-image" alt="User Image">
+      <span class="hidden-xs">Alexander Pierce</span>
+    </a>
+  </li>
+</ul>
+{{end header_custom_menu}}

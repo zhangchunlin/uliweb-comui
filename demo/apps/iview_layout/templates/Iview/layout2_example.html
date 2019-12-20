@@ -1,0 +1,19 @@
+{{extend "iview/layout2.html"}}
+
+{{block mainmenu_config}}
+{{mainmenu_name,mainmenu_active='MAINMENU','iview2'}}
+{{end mainmenu_config}}
+
+{{block info_menu}}
+<div class="layout-info-menu">
+  <Avatar src="/static/img/user2-160x160.jpg" />
+</div>
+{{end info_menu}}
+
+{{block content_breadcrumb}}
+<i-content :style="{padding: '0 40px'}">
+    <breadcrumb :style="{margin: '8px 0'}">
+        <breadcrumb-item>Home</breadcrumb-item>
+        <breadcrumb-item>Iview layout2</breadcrumb-item>
+    </breadcrumb>
+{{end content_breadcrumb}}
