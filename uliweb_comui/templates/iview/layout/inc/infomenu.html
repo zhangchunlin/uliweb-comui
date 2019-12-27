@@ -1,0 +1,12 @@
+{{if hasattr(request, 'user') and request.user:}}
+<div class="layout-info-menu">
+  <dropdown trigger="click">
+      <a href="javascript:void(0)">
+          <Avatar src="{{=request.user.get_image_url()}}" />
+      </a>
+      <dropdown-menu slot="list">
+          <dropdown-item><a href="{{=url_for('uliweb_comapps.auth.login.views.logout')}}">Logout</a></dropdown-item>
+      </dropdown-menu>
+  </dropdown>
+</div>
+{{pass #if user}}
