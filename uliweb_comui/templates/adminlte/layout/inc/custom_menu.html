@@ -1,10 +1,28 @@
 {{if hasattr(request, 'user') and request.user:}}
-<ul class="nav navbar-nav">
-  <li class="user user-menu">
-    <a href="#">
-      <img src="{{=request.user.get_image_url()}}" class="user-image" alt="User Image">
-      <span class="hidden-xs">{{=str(request.user)}}</span>
-    </a>
-  </li>
-</ul>
+<div class="navbar-custom-menu">
+  <ul class="nav navbar-nav">
+    <li class="dropdown user user-menu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <img src="{{=request.user.get_image_url()}}"  class="user-image"/>
+        <span class="hidden-xs">{{=str(request.user)}}</span>
+      </a>
+      <ul class="dropdown-menu">
+        <li class="user-header">
+            <img src="{{=request.user.get_image_url()}}"  class="img-circle"/>
+            <p>{{=str(request.user)}}</p>
+        </li>
+        <li class="user-footer">
+          {{if functions.get_user_image:}}
+          <div class="pull-left">
+            <a href="{{=url_for('uliweb_comapps.auth.user_admin.views.UserView.view')}}" class="btn btn-default btn-flat">Profile</a>
+          </div>
+          {{pass #if}}
+          <div class="pull-right">
+            <a href="{{=url_for('uliweb_comapps.auth.login.views.logout')}}" class="btn btn-default btn-flat">Log out</a>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
 {{pass #if user}}

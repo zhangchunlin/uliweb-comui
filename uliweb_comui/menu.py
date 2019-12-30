@@ -26,7 +26,7 @@ def load_menu(menus):
     __menu_items__.clear()
     _m = []
     _menu_names = set() #each menu item should has unique name
-    
+
     def _iter_menus(m, parent=''):
         """
         make menu tree to plat list
@@ -42,13 +42,13 @@ def load_menu(menus):
             subs = i.get('subs', [])
             _iter_menus(subs, os.path.join(parent, name).replace('\\', '/'))
             i['subs'] = []
-    
+
     def _f(menus):
         for name, item in menus:
             x = deepcopy(item)
             x['name'] = name
             yield x
-    
+
     _iter_menus(_f(menus))
 
     _m.sort()
@@ -85,9 +85,9 @@ def get_menu(name):
     global __menus__
 
     assert name
-    
+
     path = name.split('/')
-    items = __menus__[path[0]]
+    items = __menus__.get(path[0],{})
     if len(path) > 1:
         _items = items
         find = False
@@ -101,16 +101,16 @@ def get_menu(name):
             items = _items
         else:
             raise KeyError("Can't find menu item %s" % name)
-        
+
     return items
-    
+
 def print_menu(root=None, title=False, verbose=False):
     global __menus__
-    
+
     items = __menus__
     if root:
         items = get_menu(root)
-    
+
     def p(menus, tab=0):
         print (' '*tab + menus['name'], end='')
         if title or verbose:
@@ -126,25 +126,25 @@ def print_menu(root=None, title=False, verbose=False):
         print (txt)
         for x in menus.get('subs', []):
             p(x, tab+4)
-       
+
     if not root:
         for x in items.values():
             p(x)
     else:
         p(items)
-            
+
 def after_init_apps(sender):
     from uliweb import settings
-    
+
     load_menu(settings.MENUS.items())
-    
+
 def default_validators(item, context):
     """
     Check role and permission
     role and permission check result will be cached in context dict
     """
     from uliweb import functions, request
-    
+
     roles = item.get('roles', [])
     perms = item.get('permissions', [])
     if roles or perms:
@@ -158,7 +158,7 @@ def default_validators(item, context):
                     con_roles[x] = flag
                 if flag:
                     return flag
-            
+
         if perms:
             con_perms = context.setdefault('permissions', {})
             for x in perms:
@@ -171,19 +171,19 @@ def default_validators(item, context):
                 return flag
     else:
         return True
-    
+
 def _validate(menu, context, validators=None):
     #validate permission
     validators = validators or []
-    
+
     check = menu.get('check')
     if check and not isinstance(check, (list, tuple)):
         check = [check]
     else:
         check = []
-    
+
     validators = validators + check
-    
+
     if validators:
         flag = False
         for v in validators:
@@ -198,18 +198,18 @@ def _validate(menu, context, validators=None):
                 break
     else:
         flag = True
-        
+
     return flag
-    
+
 def navigation(name, active='', check=None, id=None, _class=None):
     from uliweb import settings
-    
+
     if check and not isinstance(check, (list, tuple)):
         check = [check]
     else:
         check = []
     validators = (settings.MENUS_CONFIG.validators or []) + list(check)
-    
+
     _navigation = settings.MENUS_CONFIG.navigation_render or default_navigation
     return import_attr(_navigation)(name=name, active=active, validators=validators, id=id, _class=_class)
 
@@ -221,7 +221,7 @@ def menu(name, active='', check=None, id=None, _class=None):
     else:
         check = []
     validators = (settings.MENUS_CONFIG.validators or []) + list(check)
-    
+
     _menu = settings.MENUS_CONFIG.menu_render or default_menu
     return import_attr(_menu)(name=name, active=active, validators=validators, id=id, _class=_class)
 
@@ -229,11 +229,11 @@ def iter_menu(name, active='', validators=None):
     x = active.split('/')
     items = get_menu(name)
     context = {}
-    
+
     def p(menus, active, index=0):
-        
+
         begin = False
-        
+
         #process sub menus
         for j in menus.get('subs', []):
             flag = _validate(j, context, validators)
@@ -255,26 +255,26 @@ def iter_menu(name, active='', validators=None):
 
             if not flag:
                 continue
-            
+
             if not begin:
                 yield 'begin', d
                 begin = True
-                
+
             yield 'open', d
-            
+
             yield 'item', d
-            
+
             for y in p(j, active, index+1):
                 yield y
-            
+
             yield 'close', {'index':index+1}
-        
+
         if begin:
             yield 'end', d
-         
+
     for m in p(items, active):
         yield m
-    
+
 def default_menu(name, active='', validators=None, id=None, _class=None,
                  menu_default_class='sidebar-menu'):
     """
