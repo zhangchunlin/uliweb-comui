@@ -173,8 +173,9 @@ def default_validators(item, context):
         return True
 
 def _validate(menu, context, validators=None):
+    from uliweb import settings
     #validate permission
-    validators = validators or []
+    validators = validators or settings.MENUS_CONFIG.validators or []
 
     check = menu.get('check')
     if check and not isinstance(check, (list, tuple)):
