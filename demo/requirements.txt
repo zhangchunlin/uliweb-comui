@@ -1,5 +1,3 @@
 uliweb3
-uliweb-ui
-uliweb-layout
-uliweb-apps
+six
 uliweb-comui

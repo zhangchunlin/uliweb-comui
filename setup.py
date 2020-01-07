@@ -31,11 +31,6 @@ def grep(attrname):
     strval, = re.findall(pattern, file_text)
     return strval
 
-if sys.version_info[0] == 2:
-    uliweb_mname = "uliweb"
-else:
-    uliweb_mname = "uliweb3"
-
 setup(
     name='uliweb-comui',
     version=grep('__version__'),
@@ -50,7 +45,7 @@ setup(
     zip_safe=False,
     platforms='any',
     install_requires=[
-        uliweb_mname,
+        "uliweb" if sys.version_info[0] == 2 else "uliweb3",
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
