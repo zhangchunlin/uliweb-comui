@@ -154,7 +154,10 @@ def default_validators(item, context):
                 if x in con_roles:
                     flag = con_roles[x]
                 else:
-                    flag = functions.has_role(request.user, x)
+                    if hasattr(request,"user") and request.user:
+                        flag = functions.has_role(request.user, x)
+                    else:
+                        flag = False
                     con_roles[x] = flag
                 if flag:
                     return flag
