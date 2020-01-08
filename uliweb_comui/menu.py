@@ -271,7 +271,7 @@ def iter_menu(name, active='', validators=None):
             for y in p(j, active, index+1):
                 yield y
 
-            yield 'close', {'index':index+1}
+            yield 'close', d
 
         if begin:
             yield 'end', d

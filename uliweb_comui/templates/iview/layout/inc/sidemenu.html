@@ -5,7 +5,7 @@
 <i-menu active-name="{{=sidemenu_active}}" :open-names="{{=sidemenu_open}}" theme="light" width="auto">
     {{for t,m in functions.iter_menu(sidemenu_name,sidemenu_active):}}
         {{if t=="open":}}
-            {{if m.get('index')==0:}}
+            {{if m.get('index')==0 and m.get('subs'):}}
             <submenu name="{{=m['name']}}">
             {{pass #if subs}}
         {{elif t=="item":}}
@@ -18,7 +18,7 @@
             <menu-item name="{{=m['name']}}" {{='to="%s"'%(m["link"]) if m["link"] else ''}}>{{=m['title']}}</menu-item>
             {{pass #if subs}}
         {{elif t=="close":}}
-            {{if m.get('index')==1:}}
+            {{if m.get('index')==0 and m.get('subs'):}}
             </submenu>
             {{pass #if subs}}
         {{pass #if t}}
