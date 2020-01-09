@@ -1,0 +1,24 @@
+{{extend "iview/layout2.html"}}
+
+{{block content_wrapper}}
+<layout>
+    <sider  v-show="sider_show" hide-trigger :style="{background: '#fff'}">
+        {{block sidemenu}}
+        {{include "iview/layout/inc/sidemenu.html"}}
+        {{end sidemenu}}
+    </sider>
+    <layout>
+    <i-content :style="{padding: '0 20px'}">
+    {{block content_breadcrumb}}
+    {{include "iview/layout/inc/breadcrumb.html"}}
+    {{end content_breadcrumb}}
+    {{block content}}
+    <card>
+        <div style="min-height: 600px;">
+        </div>
+    </card>
+    {{end content}}
+    </i-content>
+    </layout>
+</layout>
+{{end content_wrapper}}

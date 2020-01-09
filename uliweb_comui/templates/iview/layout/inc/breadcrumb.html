@@ -1,0 +1,5 @@
+<breadcrumb :style="{margin: '8px 0'}">
+{{for i in functions.iter_breadcrumb(sidemenu_name,sidemenu_active):}}
+    <breadcrumb-item>{{=i.get("title",i.get("name"))}}</breadcrumb-item>
+{{pass #iter_breadcrumb}}
+</breadcrumb>

@@ -428,6 +428,19 @@ def startup_installed(sender):
     template.default_namespace['mainmenu'] = mainmenu
     template.default_namespace['sidemenu'] = sidemenu
 
+def iter_breadcrumb(menu, active, suffix='', prefix=''):
+    items = get_menu(menu).get('subs', [])
+    if '/' not in active:
+        active = '/'.join(__menu_items__[active].split('/')[1:] + [active])
+    path = active.split('/')
+
+    for c in path:
+        for item in items:
+            if item['name'] == c:
+                items = item.get('subs', [])
+                yield item
+                break
+
 def breadcrumb(menu, active, suffix='', prefix=''):
     """
     Output breadcrumb html code

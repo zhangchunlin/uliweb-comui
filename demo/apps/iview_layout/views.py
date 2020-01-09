@@ -11,3 +11,6 @@ class Iview(object):
 
     def layout2_example(self):
         return {}
+
+    def layout3_example(self):
+        return {}

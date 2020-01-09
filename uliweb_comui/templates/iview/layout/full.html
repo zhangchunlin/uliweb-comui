@@ -27,13 +27,7 @@
             <layout>
                 {{block sidebar}}{{end sidebar}}
                 <layout>
-                {{block content_breadcrumb}}
-                <i-content :style="{padding: '0 40px'}">
-                    <breadcrumb :style="{margin: '8px 0'}">
-                        <breadcrumb-item>Home</breadcrumb-item>
-                        <breadcrumb-item>Layout</breadcrumb-item>
-                    </breadcrumb>
-                {{end content_breadcrumb}}
+                <i-content :style="{padding: '20px 20px 0px'}">
                 {{block content}}
                 <card>
                     <div style="min-height: 600px;">
@@ -41,12 +35,12 @@
                 </card>
                 {{end content}}
                 </i-content>
-                {{end content_wrapper}}
-                {{block footer}}
-                {{include "iview/layout/inc/footer.html"}}
-                {{end footer}}
                 </layout>
             </layout>
+            {{end content_wrapper}}
+            {{block footer}}
+            {{include "iview/layout/inc/footer.html"}}
+            {{end footer}}
         </layout>
     </div>
 </div>
