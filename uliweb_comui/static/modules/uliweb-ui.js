@@ -236,7 +236,7 @@ function load(module, callback){
     callback()
   }
   else {
-    head.load(["/static/jsmodules.js"], function(){
+    head.load(["static/jsmodules.js"], function(){
         var modules = [];
         if ($.isArray(module)) {
             module.forEach(function(v){
