@@ -58,7 +58,6 @@ def load_menu(menus):
     while len(stack) > 0:
         parent, pitem = stack.pop(0)
         i = 0
-        find = False
         while i<len(_m):
             _p, _, mitem = _m[i]
             is_path = '/' in _p
@@ -73,11 +72,8 @@ def load_menu(menus):
                 mitem['id'] = _id
                 __menu_items__[name] = _p
                 stack.append((name, mitem))
-                find = True
                 _m.pop(i)
             else:
-                if find:
-                    break
                 i += 1
     return __menus__
 
