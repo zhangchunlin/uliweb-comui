@@ -4,16 +4,16 @@
 {{mainmenu_name,mainmenu_active='MAINMENU','iview1'}}
 {{end mainmenu_config}}
 
-{{block content_breadcrumb}}
-<i-content :style="{padding: '0 40px'}">
-    <breadcrumb :style="{margin: '8px 0'}">
-        <breadcrumb-item>Home</breadcrumb-item>
-        <breadcrumb-item>Iview layout1</breadcrumb-item>
-    </breadcrumb>
-{{end content_breadcrumb}}
-
 {{block info_menu}}
 <div class="layout-info-menu">
   <Avatar style="background-color: #87d068" icon="ios-person" />
 </div>
 {{end info_menu}}
+
+{{block content}}
+<card>
+    <div style="min-height: 300px;">
+      Add your content here!
+    </div>
+</card>
+{{end content}}

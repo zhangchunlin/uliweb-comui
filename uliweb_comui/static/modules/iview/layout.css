@@ -1,4 +1,9 @@
-#mainapp{padding: 20px;}
+#mainapp{
+    padding: 20px;
+}
+#maincontent{
+    min-height: calc(100vh - 212px);
+}
 .layout{
     border: 1px solid #d7dde4;
     background: #f5f7f9;
@@ -6,6 +11,7 @@
     border-radius: 4px;
     overflow: hidden;
 }
+
 .layout-logo{
     width: 180px;
     height: 30px;

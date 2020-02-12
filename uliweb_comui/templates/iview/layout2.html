@@ -1,25 +1,34 @@
 {{extend "iview/layout/full.html"}}
 
 {{block sider_trigger}}
-<li :class="{'sider-trigger':true}"><icon :type=sider_show?"ios-arrow-back":"ios-arrow-forward" size="25" @click="sider_show=!sider_show"/></li>
+<li :class="{'sider-trigger':true}"><icon id="sider_switcher" type="ios-arrow-back" size="25"/></li>
 {{end sider_trigger}}
 
 {{block sidebar}}
-<sider  v-show="sider_show" hide-trigger :style="{background: '#fff'}">
+<sider id="iview_sider" hide-trigger :style="{background: '#fff'}">
     {{block sidemenu}}
     {{include "iview/layout/inc/sidemenu.html"}}
     {{end sidemenu}}
 </sider>
 {{end sidebar}}
-
-{{block mainapp_vue}}
+{{block mainjs}}
 <script>
-new Vue({
-    el: '#mainapp',
-    data: {
-        sider_show: true
-    },
-    delimiters: ['{', '}']
+var sider_show = true
+switch_sider = function(){
+    sider_show = !sider_show
+    if (sider_show) {
+        $("#iview_sider").show()
+    }
+    else {
+        $("#iview_sider").hide()
+    }
+    $("#sider_switcher").toggleClass("ivu-icon-ios-arrow-forward",!sider_show)
+    $("#sider_switcher").toggleClass("ivu-icon-ios-arrow-back",sider_show)
+}
+$(document).ready(function() {
+    $("#sider_switcher").click(function(){
+        switch_sider()
+    })
 })
 </script>
-{{end mainapp_vue}}
+{{end mainjs}}

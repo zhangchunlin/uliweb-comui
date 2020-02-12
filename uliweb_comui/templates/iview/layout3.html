@@ -1,8 +1,8 @@
 {{extend "iview/layout2.html"}}
 
 {{block content_wrapper}}
-<layout>
-    <sider  v-show="sider_show" hide-trigger :style="{background: '#fff'}">
+<layout id="maincontent">
+    <sider id="iview_sider" hide-trigger :style="{background: '#fff'}">
         {{block sidemenu}}
         {{include "iview/layout/inc/sidemenu.html"}}
         {{end sidemenu}}
@@ -14,7 +14,7 @@
     {{end content_breadcrumb}}
     {{block content}}
     <card>
-        <div style="min-height: 600px;">
+        <div style="min-height: 300px;">
         </div>
     </card>
     {{end content}}

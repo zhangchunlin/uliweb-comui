@@ -1,14 +1,18 @@
 {{extend "iview/layout/basic.html"}}
 
 {{block resources}}
-    {{include "iview/layout/inc/common.html"}}
-    {{block other_use}}{{end}}
+    {{block common_use}}{{include "iview/layout/inc/common.html"}}{{end common_use}}
+    {{block other_use}}{{end other_use}}
 {{end}}
 
 {{block body}}
 <body>
 
 {{block container}}
+{{block flash}}
+{{include "iview/layout/inc/flash.html"}}
+{{end flash}}
+
 <div id="mainapp" v-cloak>
     <div class="layout">
         <layout>
@@ -19,19 +23,14 @@
                     {{end mainmenu}}
                 </i-header>
             {{end topbar}}
-
-            {{block flash}}
-                {{include "iview/layout/inc/flash.html"}}
-            {{end flash}}
-
             {{block content_wrapper}}
             <layout>
                 {{block sidebar}}{{end sidebar}}
-                <layout>
+                <layout id="maincontent">
                 <i-content :style="{padding: '20px 20px 0px'}">
                 {{block content}}
                 <card>
-                    <div style="min-height: 600px;">
+                    <div style="min-height: 300px;">
                     </div>
                 </card>
                 {{end content}}
@@ -45,6 +44,7 @@
         </layout>
     </div>
 </div>
+{{block mainjs}}{{end mainjs}}
 {{block mainapp_vue}}
 <script>
 new Vue({
