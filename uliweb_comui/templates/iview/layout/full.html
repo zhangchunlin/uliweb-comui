@@ -30,7 +30,9 @@
                 <i-content :style="{padding: '20px 20px 0px'}">
                 {{block content}}
                 <card>
-                    <div style="min-height: 300px;">
+                    <div style="min-height: 600px;">
+                        {{block content_main}}
+                        {{end content_main}}
                     </div>
                 </card>
                 {{end content}}

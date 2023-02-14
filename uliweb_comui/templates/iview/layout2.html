@@ -11,8 +11,8 @@
     {{end sidemenu}}
 </sider>
 {{end sidebar}}
-{{block mainjs}}
-<script>
+
+{{block sidebarjs}}
 var sider_show = true
 switch_sider = function(){
     sider_show = !sider_show
@@ -30,5 +30,4 @@ $(document).ready(function() {
         switch_sider()
     })
 })
-</script>
-{{end mainjs}}
+{{end sidebarjs}}
